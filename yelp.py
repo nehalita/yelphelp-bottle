@@ -1,7 +1,6 @@
-"""Command line interface to the Yelp Search API."""
+"""Interface to the Yelp Search API."""
 
 import json
-import oauth2
 import optparse
 import urllib
 import urllib2

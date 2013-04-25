@@ -1,6 +1,7 @@
 import os
 import bottle
 import bson
+import yelp
 from urlparse import urlparse
 
 MONGO_URL = os.environ.get('MONGOHQ_URL')
@@ -20,16 +21,26 @@ def present_options():
     return bottle.template('main')
 
 @bottle.route('/search', method="GET")
-def add_restaurant_review():
-    return bottle.template('/search', add_var=None)
+def search_by_term():
+    return bottle.template('search', errors={})
 
 @bottle.route('/search', method="POST")
-def add_review_to_db():
+def show_search_results():
     for key, value in bottle.request.forms.items():
         print "%s: %s" % (key, value)
     #do something w/ yelp app
-    return bottle.template('/search_results')
+    return bottle.template('search-results')
 
+@bottle.route('/compare', method="GET")
+def compare_by_input():
+    return bottle.template('compare', errors={})
+
+@bottle.route('/compare', method="POST")
+def show_compare_results():
+    for key, value in bottle.request.forms.items():
+        print "%s: %s" % (key, value)
+    #do something w/ yelp app
+    return bottle.template('compare-results')
 
 '''
 #we don't need this yet but just in case
