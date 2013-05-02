@@ -26,9 +26,15 @@ def search_by_term():
 
 @bottle.route('/search', method="POST")
 def show_search_results():
+    vals = {}
     for key, value in bottle.request.forms.items():
+        vals[key] = value
         print "%s: %s" % (key, value)
-    #do something w/ yelp app
+    print vals
+    l1 = float(vals['lat'])
+    l2 = float(vals['long'])
+    s = vals['search_term']
+    print yelp.search_yelp(s, l1, l2)
     return bottle.template('search-results')
 
 @bottle.route('/compare', method="GET")

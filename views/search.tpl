@@ -8,7 +8,11 @@
     Please input your search term:
     <input type="text" name="search_term"> <br>
     Please input your location (address, city, zip code, or neighborhood):
-    <input type="text" name="location"> <br>
+    <br>
+    Lattitude: 
+    <input type="text" name="lat"> <br>
+    Longitude: 
+    <input type="text" name="long"> <br>
     <br>
   <input type="submit" value="search">
 </form>

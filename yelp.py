@@ -4,9 +4,12 @@ import json
 import optparse
 import urllib
 import urllib2
+import oauth2
 
 def request(host, path, url_params, consumer_key, consumer_secret, token, token_secret):
-  """Returns response for API request."""
+  """
+  Returns response for API request.
+  """
   # Unsigned URL
   encoded_params = ''
   if url_params:
@@ -48,21 +51,22 @@ TOKEN_SECRET    = "B2Z2kfQYZKuElmavomhmZskujXs"
 MAX_RESTAURANTS = 10
 
 def search_yelp(search_term, latitude, longitude):
-  latLongString = "%f,%f" % (latitude, longitude)
-  searchParams = {
-    'term': search_term,
-    'll': latLongString,
-    'limit': MAX_RESTAURANTS,
-  }
-  response = request(
-      'api.yelp.com',
-      '/v2/search',
-      searchParams,
-      CONSUMER_KEY,
-      CONSUMER_SECRET,
-      TOKEN,
-      TOKEN_SECRET)
-  return response
+
+    lat_long_str = "%f,%f" % (latitude, longitude)
+    searchParams = {
+        'term': search_term,
+        'll': lat_long_str,
+        'limit': MAX_RESTAURANTS,
+    }
+    response = request(
+        'api.yelp.com',
+        '/v2/search',
+        searchParams,
+        CONSUMER_KEY,
+        CONSUMER_SECRET,
+        TOKEN,
+        TOKEN_SECRET)
+    return response
 
 def get_yelp_business(businessId):
   biz_url = "/v2/business/%s" % businessId
